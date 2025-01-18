@@ -30,12 +30,16 @@ print('문자열 곱하기', a*2) # pythonpython : 2번 반복하라는 뜻
 
 print("="*50, "\n문자열 곱하기 응용 Program\n", "="*50)
 
+a = 'test'
+b = 3
+print(a * b) # testtesttest
+
 
 ## 문자열 길이 구하기
 print("문자열 길이(공백 포함합니당)", len("Life is too short"))
 
 
-## 문자열 인덱싱
+## 문자열 인덱싱 - 하나 뽑기
 a = "Life is too short"
 print(a[3]) # e
 print(a[0]) # L
@@ -46,6 +50,7 @@ print(a[-7]) # o
 
 
 ## 문자열 슬라이싱 - 여러개 뽑기
+# list[a:b:c] a 이상 ~ b 미만, c 간격만큼
 a = "Life is too short"
 # Life is too   s h o r t
 # 012345678910111213141516
@@ -55,6 +60,9 @@ print(a[7:]) # 7~끝까지
 print(a[:10]) # 처음부터~9까지
 print(a[:]) # 처음부터 끝까지
 print(a[8:-7]) # 인덱스 8~-6까지(-7포함x)
+print(a[::2]) # 처음부터 끝까지. 간격 2로
+print(a[::-1]) # 거꾸로 => trohs oot si efiL
+print(a[::-2]) # => tosots fL
 
 
 ## 문자열은 '변경 불가능한(immutable) 자료형'
@@ -83,14 +91,15 @@ print("Error is %d%%" %98) # %% 두개 같이 사용
 
 ## 포맷 코드 + 숫자 함께 사용
 print("%10s" %"hi") #________hi (공백 8칸+hi: 오른쪽정렬 출력됨)
-print("%-10s" %"hi") #hi________ (hi+공백 8칸 : 왼쪽정렬)
+print("%-10sjane" %"hi") #hi________jain (hi+공백 8칸 : 왼쪽정렬)
 
 
 ## 소수점 표현
 print("%0.4f" %3.14159265) # 소수점 네번째 자리까지 표현
 print("%.4f" %3.14159265) # 위와 같은 표현
 
-print("%10.4f" %3.14159265) #____3.1415 (공백4칸+3.1415 : 총 10칸)
+print("%10.4f" %3.14159265) #____3.1416 (공백4칸+3.1416 : 총 10칸)
+print("%-10.4f" %3.1415992) #3.1416____ (3.1416+공백4칸)
 
 
 ## format 함수 사용 포매팅
@@ -107,26 +116,27 @@ print("I ate {0} grapes, so I was sick {days} days".format(10, days=6)) # 인덱
 
 
 ## 왼쪽 정렬
-print("{0:<10}".format("hi"))
+print("{0:<10}".format("hi")) # hi________
 
 
 ## 오른쪽 정렬
-print("{0:>10}".format('hi'))
+print("{0:>10}".format('hi')) # ________hi
 
 
 ## 가운데 정렬
-print("{0:^10}".format('hi'))
+print("{0:^10}".format('hi')) # ____hi____
 
 
 ## 공백 채우기
-print("{0:=^10}".format('hi'))
-print("{0:=<10}".format('hi'))
+print("{0:=^10}".format('hi')) # ====hi====
+print("{0:=<10}".format('hi')) # hi========
 
 
 ## 소수점 채우기
 print("%0.4f" %3.141592) # %0.4f : 소수점 넷째 자리까지 표기
 print("{0:0.4f}".format(3.141592))
-print("{0:10.4f}".format(3.141592))
+print("{0:.4f}".format(3.141592)) # 0.4f .4f 두개 같음 : 0 생략해도됨
+print("{0:10.4f}".format(3.141592)) # ____3.1516
 
 
 ## 중괄호 표시하기
@@ -136,13 +146,22 @@ print("{{ and }}".format())
 ## f 문자열 포매팅
 name = '홍길동'
 age = 30
-print(f'나의 이름은 {name}입니다. 나이는 {age+1}입니다.')
+print(f'나의 이름은 {name}입니다. 나이는 {age+1}입니다.') # 중괄호 안에 변수를 넣을 수 있음
 
 dic = {'name' : "홍길동", 'age' : 30}
 print(f'나의 이름은 {dic["name"]}이고, 나이는 {dic['age']}입니다.')
 
+print(f'{'hi':<10}')
+print(f'{'hi':>10}') 
+print(f'{'hi':^10}')
 
-## 문자열 관련 함수
+
+num = 123456789
+print(f'{num:,}') # => 123,456,789 : 3자리씩 콤마로 구분
+
+
+
+## 문자열 관련 함수(메소드)
 a = 'text'
 print(a.count('t')) # 문자 개수 세기 count
 
@@ -153,7 +172,8 @@ print(a.index('e'))
 # print(a.index('k')) # 없는 문자일 경우 에러 반환
 
 print(",".join('abcd')) # 문자열 삽입 join
-print(",".join(['a','b','c','d']))
+print(",".join(['a','b','c','d'])) # join()은 list, tuple도 입력으로 사용 가능
+print(" and ".join("1234"))
 
 print("hi".upper()) # 소문자 -> 대문자 upper. a 자체의 문자열이 바뀌는 것x. 그저 결과를 출력해줄뿐. a=a.upper() 해야 바뀜
 print("HI".lower()) # 대문자 -> 소문자 lower
@@ -164,6 +184,5 @@ print(" hi ".strip()) # 양쪽 공백 지우기 strip
 
 print("Life is too short".replace("Life","your leg")) # 문자열 바꾸기 replace
 
-
-print("Life is too short".split()) # 문자열 나누기 split
+print("Life is too short".split()) # 문자열 나누기 split - 기본 : 띄어쓰기를 기준으로 나눠줌
 print("a:b:c:d".split(":")) # 리스트로 반환됨
