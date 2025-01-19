@@ -32,7 +32,8 @@ a[2] = 4
 print(a) # [1,2,4]
 
 
-# 요소 삭제하기 delete
+## 요소 삭제하기
+# delete
 a = [1,2,3]
 del a[1] # 인덱스 1을 삭제함
 print(a) # [1,3]
@@ -40,6 +41,17 @@ print(a) # [1,3]
 b = [4,5,6]
 del b[1:] # 슬라이싱으로 삭제
 print(b) # [4]
+
+food = ['pizza', 'hamburger', 'sandwich', 'donuts']
+del food[:] # 전체 삭제
+print(food) # => [] : 빈 리스트 출력됨
+
+
+# clear
+food = ['pizza', 'hamburger', 'sandwich', 'donuts']
+food.clear()
+print('food', food) # => [] : 빈 리스트가 나온다
+
 
 
 ## 요소 추가하기 append -> 괄호 안에 오는 자체가 추가됨 append != extend
